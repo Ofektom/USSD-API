@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #4CAF50;
+        }
+        p {
+            margin: 10px 0;
+        }
+        .amount {
+            font-weight: bold;
+            color: #333;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Payment Confirmation</h2>
+    <p>Dear <span th:text="${customerName}"></span>,</p>
+
+    <p>Thank you for your payment.</p>
+
+    <p>Order Reference: <strong><span th:text="${orderReference}"></span></strong></p>
+    <p class="amount">Amount Paid: <strong>$<span th:text="${amount}"></span></strong></p>
+
+    <p>Your payment has been successfully processed, and we are preparing your order for shipment.</p>
+
+    <p>Best regards,</p>
+    <p>The E-commerce Team</p>
+
+    <div class="footer">
+        <p>If you have any questions, feel free to contact us at support@ecommerce.com.</p>
+        <p>&copy; 2024 Ofektomtech. All rights reserved</p>
+    </div>
+</div>
+</body>
+</html>

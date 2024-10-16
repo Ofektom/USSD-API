@@ -1,0 +1,79 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: auth-service
+          uri: lb://AUTH-SERVICE
+          predicates:
+            - Path=/api/v1/auth/**
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/orders/**
+          filters:
+            - name: AuthenticationFilter
+        - id: order-lines-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/v1/order-lines/**
+          filters:
+            - name: AuthenticationFilter
+        - id: ussd-service
+          uri: lb://USSD-SERVICE
+          predicates:
+            - Path=/api/v1/ussd/**
+          filters:
+            - name: AuthenticationFilter
+        - id: payment-service
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/api/v1/payments/**
+          filters:
+            - name: AuthenticationFilter
+        - id: rating-service
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/api/v1/ratings/**
+          filters:
+            - name: AuthenticationFilter
+        - id: recommender-service
+          uri: lb://RECOMMENDER-SERVICE
+          predicates:
+            - Path=/api/v1/recommenders/**
+          filters:
+            - name: AuthenticationFilter
+        - id: operator-management-service
+          uri: lb://OPERATOR-MANAGEMENT-SERVICE
+          predicates:
+            - Path=/api/v1/operators/**
+          filters:
+            - name: AuthenticationFilter
+        - id: developer-console-service
+          uri: lb://DEVELOPER-CONSOLE-SERVICE
+          predicates:
+            - Path=/api/v1/developers/**
+          filters:
+            - name: AuthenticationFilter
+
+
+jwt:
+  auth:
+    converter:
+      resource-id: gateway-service
+      principal-attribute: username
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
+
+application:
+  config:
+    jwt-secret: 5627dcc7bb45a7cf9ddd211168fb727a2005338c5fe1e29faa71fc542bcd59e1bf0c604d65578ba9001984bfa0f25e29a509f130db33c51916bf0ebfbb78b645
+
+server:
+  port: 8333

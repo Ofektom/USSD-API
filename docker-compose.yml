@@ -1,0 +1,82 @@
+services:
+  mongodb:
+    container_name: ussd_mongo_db
+    image: mongo
+    ports:
+      - 27018:27017  # Changed host port to 27018
+    volumes:
+      - mongo:/data
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ofektom
+      MONGO_INITDB_ROOT_PASSWORD: Of3ktom!
+    networks:
+      - ussd-network
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: ussd_mongo-express
+    restart: always
+    ports:
+      - "8082:8081"  # Changed host port to 8082
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_PORT=27017
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=ofektom
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=Of3ktom!
+    networks:
+      - ussd-network
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: ussd_zookeeper
+    environment:
+      ZOOKEEPER_SERVICE_ID: 1
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - 22182:2181  # Changed host port to 22182
+    networks:
+      - ussd-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: ussd_kafka
+    ports:
+      - 9093:9092  # Changed host port to 9093
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9093  # Updated to new port
+      KAFKA_HEAP_OPTS: "-Xms512m -Xmx1g"
+    networks:
+      - ussd-network
+    restart: always
+
+  mail-dev:
+    container_name: ussd_mail_dev
+    image: maildev/maildev
+    ports:
+      - 1081:1080  # Changed host port to 1081
+      - 1026:1025  # Changed host port to 1026
+    networks:
+      - ussd-network
+
+  zipkin:
+    container_name: ussd_zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9412:9411  # Changed host port to 9412
+    networks:
+      - ussd-network
+
+networks:
+  ussd-network:  # Changed network name
+    driver: bridge
+
+volumes:
+  mongo:

@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ussdDB
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+application:
+  config:
+    operator-url: http://localhost:8333/api/v1/operator/ussd
+    developer-url: http://localhost:8333/api/v1/developer
+
+
+server:
+  port: 7003

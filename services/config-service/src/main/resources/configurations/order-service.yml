@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/order
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update  # Use 'update' to create/update the database schema
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true  # Optional: Set to true to log SQL statements
+    enable-native-sql: true
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9093
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        spring.json.type.mapping: orderConfirmation:com.ofektom.ecommerce.kafka.OrderConfirmation
+
+server:
+  port: 7004
+
+application:
+  config:
+    payment-url: http://localhost:8333/api/v1/payments
+    product-url: http://localhost:8333/api/v1/products

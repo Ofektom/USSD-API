@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/userz
+    username: postgres
+    password: 1234
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+server:
+  port: 7001
+
+application:
+  config:
+    jwt-secret: 5627dcc7bb45a7cf9ddd211168fb727a2005338c5fe1e29faa71fc542bcd59e1bf0c604d65578ba9001984bfa0f25e29a509f130db33c51916bf0ebfbb78b645

@@ -1,0 +1,19 @@
+spring:
+  data:
+    mongodb:
+      username: ofektom
+      password: Of3ktom!
+      host: localhost
+      port: 27018
+      database: ratingz
+      authentication-database: admin
+
+
+
+server:
+  port: 7006
+
+application:
+  config:
+    customer-url: http://localhost:8333/api/v1/customers
+    product-url: http://localhost:8333/api/v1/products
