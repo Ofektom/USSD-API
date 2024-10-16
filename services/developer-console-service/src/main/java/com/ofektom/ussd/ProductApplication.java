@@ -1,4 +1,4 @@
-package com.ofektom.ecommerce;
+package com.ofektom.ussd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

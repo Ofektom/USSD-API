@@ -1,8 +1,9 @@
-package com.ofektom.ecommerce.controller;
+package com.ofektom.ussd.controller;
 
-import com.ofektom.ecommerce.dto.DeveloperRequest;
-import com.ofektom.ecommerce.dto.DeveloperResponse;
-import com.ofektom.ecommerce.service.DeveloperApplicationService;
+import com.ofektom.ussd.dto.DeveloperRequest;
+import com.ofektom.ussd.dto.DeveloperResponse;
+import com.ofektom.ussd.entity.UssdApplication;
+import com.ofektom.ussd.service.DeveloperApplicationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class UssdApplicationController {
     }
 
     @GetMapping("/{apiKey}")
-    public ResponseEntity<DeveloperResponse> getApplication(@PathVariable String apiKey) {
+    public ResponseEntity<UssdApplication> getApplication(@PathVariable String apiKey) {
         return ResponseEntity.ok(service.getApplication(apiKey));
     }
 

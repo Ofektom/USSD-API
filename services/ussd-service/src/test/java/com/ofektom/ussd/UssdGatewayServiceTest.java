@@ -39,7 +39,6 @@ class UssdGatewayServiceTest {
         session.setPhoneNumber("1234567890");
 
         when(sessionRepository.findBySessionId(request.sessionId())).thenReturn(Optional.of(session));
-        when(operatorAGateway.handleRequest(request)).thenReturn(new UssdResponse("sessionId123", "Response from Operator A"));
 
         UssdResponse response = ussdGatewayService.processUssdRequest(request, "ry867566f6776");
 

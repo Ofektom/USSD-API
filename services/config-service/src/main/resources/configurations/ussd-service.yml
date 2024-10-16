@@ -13,7 +13,7 @@ spring:
 application:
   config:
     operator-url: http://localhost:8333/api/v1/operator/ussd
-    developer-url: http://localhost:8333/api/v1/developer
+    developer-url: http://localhost:8333/api/v1/applications
 
 
 server:

@@ -1,4 +1,4 @@
-package com.ofektom.ecommerce.config;
+package com.ofektom.ussd.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.ofektom.ecommerce.dto;
+package com.ofektom.ussd.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

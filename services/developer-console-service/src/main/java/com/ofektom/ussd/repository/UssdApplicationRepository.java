@@ -1,6 +1,6 @@
-package com.ofektom.ecommerce.repository;
+package com.ofektom.ussd.repository;
 
-import com.ofektom.ecommerce.entity.UssdApplication;
+import com.ofektom.ussd.entity.UssdApplication;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

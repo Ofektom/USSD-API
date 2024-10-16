@@ -1,8 +1,8 @@
-package com.ofektom.ecommerce.utils;
+package com.ofektom.ussd.utils;
 
-import com.ofektom.ecommerce.dto.DeveloperRequest;
-import com.ofektom.ecommerce.dto.DeveloperResponse;
-import com.ofektom.ecommerce.entity.UssdApplication;
+import com.ofektom.ussd.dto.DeveloperRequest;
+import com.ofektom.ussd.dto.DeveloperResponse;
+import com.ofektom.ussd.entity.UssdApplication;
 import org.springframework.http.HttpStatus;
 
 public class ApplicationMapper {

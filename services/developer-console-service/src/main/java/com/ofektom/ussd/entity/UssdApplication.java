@@ -1,4 +1,4 @@
-package com.ofektom.ecommerce.entity;
+package com.ofektom.ussd.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

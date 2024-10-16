@@ -1,11 +1,11 @@
-package com.ofektom.ecommerce.service.impl;
+package com.ofektom.ussd.service.impl;
 
-import com.ofektom.ecommerce.dto.DeveloperRequest;
-import com.ofektom.ecommerce.dto.DeveloperResponse;
-import com.ofektom.ecommerce.entity.UssdApplication;
-import com.ofektom.ecommerce.repository.UssdApplicationRepository;
-import com.ofektom.ecommerce.service.DeveloperApplicationService;
-import com.ofektom.ecommerce.utils.ApplicationMapper;
+import com.ofektom.ussd.dto.DeveloperRequest;
+import com.ofektom.ussd.dto.DeveloperResponse;
+import com.ofektom.ussd.entity.UssdApplication;
+import com.ofektom.ussd.repository.UssdApplicationRepository;
+import com.ofektom.ussd.service.DeveloperApplicationService;
+import com.ofektom.ussd.utils.ApplicationMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +25,9 @@ public class DeveloperApplicationServiceImpl implements DeveloperApplicationServ
     }
 
     @Override
-    public DeveloperResponse getApplication(String apiKey) {
-        UssdApplication app = repository.findByApiKey(apiKey)
+    public UssdApplication getApplication(String apiKey) {
+        return repository.findByApiKey(apiKey)
                 .orElseThrow(() -> new IllegalArgumentException("App not found"));
-        return mapper.fromApplication(app);
     }
 
     @Override

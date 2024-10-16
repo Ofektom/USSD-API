@@ -1,11 +1,11 @@
 package com.ofektom.ussd.service.impl;
 
+import com.ofektom.ussd.developer.DeveloperClient;
+import com.ofektom.ussd.developer.UssdApplication;
 import com.ofektom.ussd.dto.UssdRequest;
 import com.ofektom.ussd.dto.UssdResponse;
-import com.ofektom.ussd.entity.UssdApplication;
 import com.ofektom.ussd.entity.UssdSession;
 import com.ofektom.ussd.operator.OperatorClient;
-import com.ofektom.ussd.repository.UssdApplicationRepository;
 import com.ofektom.ussd.repository.UssdSessionRepository;
 import com.ofektom.ussd.service.UssdGatewayService;
 import lombok.RequiredArgsConstructor;
@@ -18,16 +18,15 @@ import java.time.LocalDateTime;
 public class UssdGatewayServiceImpl implements UssdGatewayService {
 
     private final UssdSessionRepository sessionRepository;
-    private final UssdApplicationRepository applicationRepository;
     private final OperatorClient operatorClient;
+    private final DeveloperClient developerClient;
 
 
     @Override
     public UssdResponse processUssdRequest(UssdRequest request, String apiKey) {
 
         // Validate the application
-        UssdApplication application = applicationRepository.findByApiKey(apiKey)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid API Key"));
+        UssdApplication application = developerClient.getApplication(apiKey);
 
         // Find or create session
         UssdSession session = sessionRepository.findBySessionId(request.sessionId())
